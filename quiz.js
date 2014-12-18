@@ -144,7 +144,7 @@
 		}
 	}
 
-	// Creates a new button with event listener attached
+	// Create a new button with event listener attached
 	function makeNewButton(buttonText, buttonId, onEventFunction) {
 		var newButton = document.createElement('button');
 		var newButtonText = document.createTextNode(buttonText);
