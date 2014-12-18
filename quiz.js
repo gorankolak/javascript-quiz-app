@@ -38,7 +38,7 @@
 		answer2: "Sam Bartram",
 		answer3: "Nicky Weaver",
 		correctAnswer: 2,
-		totalStats: 0	
+		totalStats: 0
 	}];
 
 	var startQuiz = document.getElementById('start'),
@@ -50,116 +50,116 @@
 		totalPoints = 0;
 
 	var display = {
-    	mainPage: function(event) {
-    		var newEl = '<h1 id="questionDisplay"></h1>';
-    		newEl += '<ul><li><input type="radio" name="answers" id="input1"><label for="answers" id="answerDisplay1"></label></li>';
-    		newEl += '<li><input type="radio" name="answers" id="input2"><label for="answers" id="answerDisplay2"></label></li>';
-    		newEl += '<li><input type="radio" name="answers" id="input3"><label for="answers" id="answerDisplay3"></label></li></ul>';
-    		getApp.innerHTML = newEl;
-    		display.updatePage(event);
-    	},
-    	updatePage: function() {
-    		var getInput1 = document.getElementById('input1'),
-    			getInput2 = document.getElementById('input2'),
-    			getInput3 = document.getElementById('input3'),    			
-    			getQuestion = document.getElementById('questionDisplay'),
-    			getAnswer1 = document.getElementById('answerDisplay1'),
-    			getAnswer2 = document.getElementById('answerDisplay2'),
-    			getAnswer3 = document.getElementById('answerDisplay3');
-    		
-    		makeNewButton('Submit Answer', 'submit', checkAnswer);  		
+		mainPage: function(event) {
+			var newEl = '<h1 id="questionDisplay"></h1>';
+			newEl += '<ul><li><input type="radio" name="answers" id="input1"><label for="answers" id="answerDisplay1"></label></li>';
+			newEl += '<li><input type="radio" name="answers" id="input2"><label for="answers" id="answerDisplay2"></label></li>';
+			newEl += '<li><input type="radio" name="answers" id="input3"><label for="answers" id="answerDisplay3"></label></li></ul>';
+			getApp.innerHTML = newEl;
+			display.updatePage(event);
+		},
+		updatePage: function() {
+			var getInput1 = document.getElementById('input1'),
+				getInput2 = document.getElementById('input2'),
+				getInput3 = document.getElementById('input3'),
+				getQuestion = document.getElementById('questionDisplay'),
+				getAnswer1 = document.getElementById('answerDisplay1'),
+				getAnswer2 = document.getElementById('answerDisplay2'),
+				getAnswer3 = document.getElementById('answerDisplay3');
+				
+				makeNewButton('Submit Answer', 'submit', checkAnswer);
 
-    		if(questionIncrement < sumOfQuestions) {				
-		    	getInput1.value = 1;
-		    	getInput2.value = 2;
-		    	getInput3.value = 3;
-		    	getQuestion.innerHTML = quizData[questionIncrement].question;		
-		    	getAnswer1.innerHTML = quizData[questionIncrement].answer1;
-		    	getAnswer2.innerHTML = quizData[questionIncrement].answer2;
-		    	getAnswer3.innerHTML = quizData[questionIncrement].answer3;
-		    	questionIncrement++; 				
-    		} 
-    	},
-    	addAnswer: function(showMessage) {
-    		if(showMessage === 'correct') {
-    			addAnswerMessage('Correct Answer!');
-    		} else {
-    			addAnswerMessage('Incorrect Answer!');
-    		}
-  
-  			if (questionIncrement < sumOfQuestions) {	
-    			makeNewButton('Next question', 'nextQuest', this.removeAnswer);
-    		} else {
-    			makeNewButton('See your result', 'result', this.resultPage);
-    		}
-    	},
-    	removeAnswer: function(event) {
-    		var getShowAnswer = document.getElementById('showAnswer');
-    		var getShowAnswerParent = getShowAnswer.parentNode;
-    		getShowAnswerParent.removeChild(getShowAnswer);
-    		display.updatePage(event);
-    		var clickedEl = event.target;
-    		var clickedElParent = clickedEl.parentNode;
-    		clickedElParent.removeChild(clickedEl);
-    		var i;
+			if(questionIncrement < sumOfQuestions) {
+				getInput1.value = 1;
+				getInput2.value = 2;
+				getInput3.value = 3;
+				getQuestion.innerHTML = quizData[questionIncrement].question;
+				getAnswer1.innerHTML = quizData[questionIncrement].answer1;
+				getAnswer2.innerHTML = quizData[questionIncrement].answer2;
+				getAnswer3.innerHTML = quizData[questionIncrement].answer3;
+				questionIncrement++;
+			} 
+		},
+		addAnswer: function(showMessage) {
+			if(showMessage === 'correct') {
+				addAnswerMessage('Correct Answer!');
+			} else {
+				addAnswerMessage('Incorrect Answer!');
+			}
 
-   			for(i = 0; i < radioButtons.length; i++) {
-      			radioButtons[i].checked = false;
-   			}    		
-    	},
-    	resultPage: function() {
-    		getApp.innerHTML = '<h1>You have answered correctly on ' + totalPoints + ' questions</h1>';
-    		questionIncrement = 0;
-    		correctAnswIncrement = 0;
-    		totalPoints = 0;
-    		makeNewButton('Restart quiz', 'retart', display.mainPage);
-    	}
+			if (questionIncrement < sumOfQuestions) {
+				makeNewButton('Next question', 'nextQuest', this.removeAnswer);
+			} else {
+				makeNewButton('See your result', 'result', this.resultPage);
+			}
+		},
+		removeAnswer: function(event) {
+			var getShowAnswer = document.getElementById('showAnswer');
+			var getShowAnswerParent = getShowAnswer.parentNode;
+			getShowAnswerParent.removeChild(getShowAnswer);
+			display.updatePage(event);
+			var clickedEl = event.target;
+			var clickedElParent = clickedEl.parentNode;
+			clickedElParent.removeChild(clickedEl);
+			var i;
+
+			for(i = 0; i < radioButtons.length; i++) {
+				radioButtons[i].checked = false;
+			}
+		},
+		resultPage: function() {
+			getApp.innerHTML = '<h1>You have answered correctly on ' + totalPoints + ' questions</h1>';
+			questionIncrement = 0;
+			correctAnswIncrement = 0;
+			totalPoints = 0;
+			makeNewButton('Restart quiz', 'retart', display.mainPage);
+		}
 	};
 
 	function checkAnswer(event) {
-    	var isChecked = false,
-    		i,
-    		checkedRadio,
-    		clickedEl = event.target,
-    		clickedElParent = clickedEl.parentNode;
+		var isChecked = false,
+			i,
+			checkedRadio,
+			clickedEl = event.target,
+			clickedElParent = clickedEl.parentNode;
 
-    	for (i = 0; i < radioButtons.length; i++) {
-    		if (radioButtons[i].checked) {
-    			isChecked = true;
-    			checkedRadio = +radioButtons[i].value;
-    		}
-    	}
+		for (i = 0; i < radioButtons.length; i++) {
+			if (radioButtons[i].checked) {
+				isChecked = true;
+				checkedRadio = +radioButtons[i].value;
+			}
+		}
 
-    	if (isChecked === false) {
-    		alert('Please choose the answer!');
-    	} else {
-    		clickedElParent.removeChild(clickedEl);
-    		if (checkedRadio === quizData[correctAnswIncrement].correctAnswer) {
-    			display.addAnswer('correct');
-    			totalPoints++; 
-    		} else {
-    			display.addAnswer();
-    		}
-    		correctAnswIncrement++; 
-    	} 			
+		if (isChecked === false) {
+			alert('Please choose the answer!');
+		} else {
+			clickedElParent.removeChild(clickedEl);
+			if (checkedRadio === quizData[correctAnswIncrement].correctAnswer) {
+				display.addAnswer('correct');
+				totalPoints++;
+			} else {
+				display.addAnswer();
+			}
+			correctAnswIncrement++;
+		}
 	}
 
 	// Creates a new button with event listener attached
 	function makeNewButton(buttonText, buttonId, onEventFunction) {
-    	var newButton = document.createElement('button');
-    	var newButtonText = document.createTextNode(buttonText);
-    	newButton.appendChild(newButtonText);
-    	newButton.id = buttonId;
-    	getApp.appendChild(newButton);
-    	newButton.addEventListener('click', onEventFunction, false);
+		var newButton = document.createElement('button');
+		var newButtonText = document.createTextNode(buttonText);
+		newButton.appendChild(newButtonText);
+		newButton.id = buttonId;
+		getApp.appendChild(newButton);
+		newButton.addEventListener('click', onEventFunction, false);
 	}
 
 	function addAnswerMessage(messageText) {
-    	var showAnswer = document.createElement('p');
-    	showAnswer.id = 'showAnswer';
-    	var showAnswerMsg = document.createTextNode(messageText);
-    	showAnswer.appendChild(showAnswerMsg);
-    	getApp.appendChild(showAnswer);
+		var showAnswer = document.createElement('p');
+		showAnswer.id = 'showAnswer';
+		var showAnswerMsg = document.createTextNode(messageText);
+		showAnswer.appendChild(showAnswerMsg);
+		getApp.appendChild(showAnswer);
 	}
 
 	startQuiz.addEventListener('click', display.mainPage, false);
