@@ -101,9 +101,10 @@
 			var clickedEl = event.target;
 			var clickedElParent = clickedEl.parentNode;
 			clickedElParent.removeChild(clickedEl);
+			var allRadioButtons = radioButtons.length;
 			var i;
 
-			for(i = 0; i < radioButtons.length; i++) {
+			for(i = 0; i < allRadioButtons; i++) {
 				radioButtons[i].checked = false;
 			}
 		},
@@ -121,9 +122,10 @@
 			i,
 			checkedRadio,
 			clickedEl = event.target,
-			clickedElParent = clickedEl.parentNode;
+			clickedElParent = clickedEl.parentNode,
+			allRadioButtons = radioButtons.length;
 
-		for (i = 0; i < radioButtons.length; i++) {
+		for (i = 0; i < allRadioButtons; i++) {
 			if (radioButtons[i].checked) {
 				isChecked = true;
 				checkedRadio = +radioButtons[i].value;
