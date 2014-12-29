@@ -44,29 +44,29 @@
     var display = {
         getApp: document.getElementById('app'),
         mainPage: function() {
-            var newEl = '<h1 id="questionDisplay"></h1>';
+            var newEl = '<p id="questNumber"></p><h1 id="questionDisplay"></h1>';
                 newEl += '<ul><li><input type="radio" name="answers" id="input1" value="1"><label for="input1" id="answerDisplay1"></label></li>';
                 newEl += '<li><input type="radio" name="answers" id="input2" value="2"><label for="input2" id="answerDisplay2"></label></li>';
                 newEl += '<li><input type="radio" name="answers" id="input3" value="3"><label for="input3" id="answerDisplay3"></label></li></ul>';
+                newEl += '<p id="currentPoints"></p>';
 
             this.getApp.innerHTML = newEl;
         },
         updateMainPage: function() {
-            // var getInput1 = document.getElementById('input1'),
-            //     getInput2 = document.getElementById('input2'),
-            //     getInput3 = document.getElementById('input3'),
-            var getQuestion = document.getElementById('questionDisplay'),
+            var getQuestNumber = document.getElementById('questNumber'),
+                getQuestion = document.getElementById('questionDisplay'),
                 getAnswer1 = document.getElementById('answerDisplay1'),
                 getAnswer2 = document.getElementById('answerDisplay2'),
-                getAnswer3 = document.getElementById('answerDisplay3');
-
-            // getInput1.value = 1;
-            // getInput2.value = 2;
-            // getInput3.value = 3;
+                getAnswer3 = document.getElementById('answerDisplay3'),
+                getCurrentPoints = document.getElementById('currentPoints'),
+                sumOfQuestions = data.quizContent.length;
+                
+            getQuestNumber.innerHTML = control.count + 1 + '/' + sumOfQuestions;    
             getQuestion.innerHTML = data.quizContent[control.count].question;
             getAnswer1.innerHTML = data.quizContent[control.count].answer1;
             getAnswer2.innerHTML = data.quizContent[control.count].answer2;
             getAnswer3.innerHTML = data.quizContent[control.count].answer3;
+            getCurrentPoints.innerHTML = 'Points:' + ' ' + data.points;
             this.newElement('button', 'submit', 'Submit Answer');
         },
         addAnswer: function(showMessage) {
