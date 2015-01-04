@@ -17,7 +17,7 @@
                 correctAnswer: 3
             },
             {
-                question: "What is the name of the Southampton F.C.'s stadium",
+                question: "What is the name of the Southampton F.C.'s stadium?",
                 answer1: "St John's Stadium",
                 answer2: "St Peter's Stadium",
                 answer3: "St Mary's Stadium",
@@ -44,11 +44,11 @@
     var display = {
         getApp: document.getElementById('app'),
         mainPage: function() {
-            var newEl = '<p id="questNumber"></p><h1 id="questionDisplay"></h1>';
-                newEl += '<ul><li><input type="radio" name="answers" id="input1" value="1"><label for="input1" id="answerDisplay1"></label></li>';
-                newEl += '<li><input type="radio" name="answers" id="input2" value="2"><label for="input2" id="answerDisplay2"></label></li>';
-                newEl += '<li><input type="radio" name="answers" id="input3" value="3"><label for="input3" id="answerDisplay3"></label></li></ul>';
-                newEl += '<p id="currentPoints"></p>';
+            var newEl = '<div class="quest-number"><p id="questNumber"></p></div><h1 id="questionDisplay" class="h3"></h1>';
+                newEl += '<ul><li><label><input type="radio" name="answers" id="input1" value="1"><span class="outer"><span class="inner"></span></span><div id="answerDisplay1"></div></label></li>';
+                newEl += '<li><label><input type="radio" name="answers" id="input2" value="2"><span class="outer"><span class="inner"></span></span><div id="answerDisplay2"></div></label></li>';
+                newEl += '<li><label><input type="radio" name="answers" id="input3" value="3"><span class="outer"><span class="inner"></span></span><div id="answerDisplay3"></div></label></li></ul>';
+                newEl += '<div class="points-wrap"><p id="currentPoints"></p></div>';
 
             this.getApp.innerHTML = newEl;
         },
@@ -61,7 +61,7 @@
                 getCurrentPoints = document.getElementById('currentPoints'),
                 sumOfQuestions = data.quizContent.length;
                 
-            getQuestNumber.innerHTML = control.count + 1 + '/' + sumOfQuestions;    
+            getQuestNumber.innerHTML = control.count + 1 + '/' + sumOfQuestions;
             getQuestion.innerHTML = data.quizContent[control.count].question;
             getAnswer1.innerHTML = data.quizContent[control.count].answer1;
             getAnswer2.innerHTML = data.quizContent[control.count].answer2;
@@ -73,9 +73,9 @@
             var sumOfQuestions = data.quizContent.length;
 
             if(showMessage === 'correct') {
-                this.newElement('p', 'showAnswer', 'Correct Answer');
+                this.newElement('p', 'showAnswer', 'Correct Answer!');
             } else {
-                this.newElement('p', 'showAnswer', 'Incorrect Answer');
+                this.newElement('p', 'showAnswer', 'Incorrect Answer!');
             }
 
             if (control.count < sumOfQuestions - 1) {
@@ -100,7 +100,7 @@
             }
         },
         resultPage: function() {
-            this.getApp.innerHTML = '<h1>You have answered correctly on ' + data.points + ' questions</h1>';
+            this.getApp.innerHTML = '<h1 class="h3">You have ' + data.points + ' question(s) answered correctly</h1>';
             this.newElement('button', 'restart', 'Restart Quiz');
         },
         newElement: function(elem, elemId, elemText) {
