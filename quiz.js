@@ -43,6 +43,8 @@
     
     var display = {
         getApp: document.getElementById('app'),
+
+        // Updates DOM on start/restart of the quiz
         mainPage: function() {
             var newEl = '<div class="quest-number"><p id="questNumber"></p></div><h1 id="questionDisplay" class="h3"></h1>';
                 newEl += '<ul><li><label><input type="radio" name="answers" id="input1" value="1"><span class="outer"><span class="inner"></span></span><div id="answerDisplay1"></div></label></li>';
@@ -52,6 +54,8 @@
 
             this.getApp.innerHTML = newEl;
         },
+
+        // Updates DOM with each question
         updateMainPage: function() {
             var getQuestNumber = document.getElementById('questNumber'),
                 getQuestion = document.getElementById('questionDisplay'),
@@ -99,6 +103,8 @@
                 radioButtons[i].checked = false;
             }
         },
+
+        // Displays final page of the quiz
         resultPage: function() {
             this.getApp.innerHTML = '<h1 class="h3">You have ' + data.points + ' question(s) answered correctly</h1>';
             this.newElement('button', 'restart', 'Restart Quiz');
@@ -125,6 +131,12 @@
             var submit = document.getElementById('submit');
             submit.addEventListener('click', this.checkAnswer, false);
         },
+
+        /**
+        * Alerts if none of the radios is checked on submit 
+        * Verifies correct/incorrect answer
+        * Directs quiz to the next question or to the final page
+        */
         checkAnswer: function(event) {
             var radioButtons = document.getElementsByName('answers'),
                 allRadioButtons = radioButtons.length,
@@ -171,6 +183,8 @@
                 }
             }
         },
+
+        // Used for incrementing/looping through the quiz questions and answers
         count: 0
     };
 
