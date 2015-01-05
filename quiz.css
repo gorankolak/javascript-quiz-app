@@ -149,8 +149,8 @@ input:focus + .outer .inner {
 .inner {
     -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
-    height: 0.75em;
-    width: 0.75em;
+    height: 0.7em;
+    width: 0.7em;
     -webkit-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0);
