@@ -161,6 +161,13 @@ input:focus + .outer .inner {
     opacity: 0;
 }
 
+@media (min-width: 641px) {
+    .inner {
+        height: 0.75em;
+        width: 0.75em;
+    }
+}
+
 /* Vertical Rhythm */
 
 body {
