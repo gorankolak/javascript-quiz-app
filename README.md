@@ -1,5 +1,4 @@
 # JavaScript Quiz App
-----
 A small app created for the purpose of learning a JavaScript programming language. The emphasis was on developing a good understanding of the basic priniciples of plain 'vanilla' JavaScript without any additional libraries (i.e., jQuery).
 
 ##Concept 
